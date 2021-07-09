@@ -44,10 +44,6 @@ mybatis-plus:
     #数据库大写命名下划线转换
     #capital-mode: true
 
-logging:
-  level:
-    com.example.security: debug
-
 jwt:
   config:
     key: xkcoding
@@ -58,10 +54,9 @@ custom:
     ignores:
       # 需要过滤的 post 请求
       post:
-        - "/api/auth/login"
-        - "/api/auth/logout"
+        - "/auth/login"
+        - "/auth/logout"
       get:
-        - "/test/*"
       # 需要过滤的请求，不限方法
       pattern:
         - "/test"

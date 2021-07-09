@@ -11,12 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * <p>
  * Response 通用工具类
- * </p>
- *
- * @author yangkai.shen
- * @date Created in 2018-12-07 17:37
  */
 @Slf4j
 public class ResponseUtil {

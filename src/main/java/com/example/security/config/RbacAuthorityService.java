@@ -11,6 +11,7 @@ import com.example.security.mapper.RoleMapper;
 import com.example.security.vo.UserPrincipal;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -20,7 +21,6 @@ import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondit
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
@@ -33,14 +33,12 @@ import java.util.stream.Collectors;
  */
 
 @Service
+@RequiredArgsConstructor
 public class RbacAuthorityService {
 
-    @Resource
-    private RoleMapper roleMapper;
-    @Resource
-    private PermissionMapper permissionMapper;
-    @Resource
-    private RequestMappingHandlerMapping mapping;
+    private final RoleMapper roleMapper;
+    private final PermissionMapper permissionMapper;
+    private final RequestMappingHandlerMapping mapping;
 
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
         checkRequest(request);

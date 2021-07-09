@@ -1,3 +1,7 @@
+logging:
+  level:
+    com.example.security: debug
+
 spring:
   datasource:
     hikari:

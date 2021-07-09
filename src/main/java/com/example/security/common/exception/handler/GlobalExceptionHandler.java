@@ -20,12 +20,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import javax.validation.ConstraintViolationException;
 
 /**
- * <p>
  * 全局统一异常处理
- * </p>
- *
- * @author yangkai.shen
- * @date Created in 2018-12-10 17:00
  */
 @ControllerAdvice
 @Slf4j

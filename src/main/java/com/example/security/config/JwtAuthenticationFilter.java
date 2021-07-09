@@ -8,6 +8,7 @@ import com.example.security.common.exception.SystemRespCode;
 import com.example.security.util.JwtUtil;
 import com.example.security.util.ResponseUtil;
 import com.google.common.collect.Sets;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,7 +18,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,14 +29,12 @@ import java.util.Set;
  * Jwt 认证过滤器
  */
 @Component
+@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    @Resource
-    private CustomUserDetailsService customUserDetailsService;
-    @Resource
-    private JwtUtil jwtUtil;
-    @Resource
-    private CustomConfig customConfig;
+    private final CustomUserDetailsService customUserDetailsService;
+    private final JwtUtil jwtUtil;
+    private final CustomConfig customConfig;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

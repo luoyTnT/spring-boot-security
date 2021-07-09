@@ -25,4 +25,5 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         wrapper.eq(User::getUsername, username);
         return this.baseMapper.selectOne(wrapper);
     }
+
 }

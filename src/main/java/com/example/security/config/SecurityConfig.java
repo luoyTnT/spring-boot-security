@@ -1,5 +1,6 @@
 package com.example.security.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,24 +16,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.annotation.Resource;
-
 /**
  * Security 配置
  */
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 @EnableConfigurationProperties(CustomConfig.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Resource
-    private CustomConfig customConfig;
-    @Resource
-    private AccessDeniedHandler accessDeniedHandler;
-    @Resource
-    private CustomUserDetailsService customUserDetailsService;
-    @Resource
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final CustomConfig customConfig;
+    private final AccessDeniedHandler accessDeniedHandler;
+    private final CustomUserDetailsService customUserDetailsService;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     public BCryptPasswordEncoder encoder() {

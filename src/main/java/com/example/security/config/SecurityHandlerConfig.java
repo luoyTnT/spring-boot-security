@@ -8,7 +8,6 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
 /**
  * Security 结果处理配置
- * @author jiajixu
  */
 @Configuration
 public class SecurityHandlerConfig {

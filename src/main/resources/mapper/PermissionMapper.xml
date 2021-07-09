@@ -19,7 +19,10 @@
         DISTINCT p.*
         FROM sec_permission p
         LEFT JOIN sec_role_permission rp ON p.id = rp.permission_id
-        WHERE rp.role_id IN (:roleIds)
+        WHERE rp.role_id IN
+        <foreach item="roleId" collection="roleIds" separator="," open="(" close=")">
+            #{roleId}
+        </foreach>
     </select>
 
 </mapper>

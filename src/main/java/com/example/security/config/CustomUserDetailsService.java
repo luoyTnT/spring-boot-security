@@ -7,26 +7,24 @@ import com.example.security.service.PermissionService;
 import com.example.security.service.RoleService;
 import com.example.security.service.UserService;
 import com.example.security.vo.UserPrincipal;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * 自定义UserDetails查询
  */
 @Service
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Resource
-    private UserService userService;
-    @Resource
-    private RoleService roleService;
-    @Resource
-    private PermissionService permissionService;
+    private final UserService userService;
+    private final RoleService roleService;
+    private final PermissionService permissionService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
