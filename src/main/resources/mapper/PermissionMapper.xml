@@ -4,14 +4,22 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.example.security.entity.Permission">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="url" property="url" />
-        <result column="type" property="type" />
-        <result column="permission" property="permission" />
-        <result column="method" property="method" />
-        <result column="sort" property="sort" />
-        <result column="parent_id" property="parentId" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="url" property="url"/>
+        <result column="type" property="type"/>
+        <result column="permission" property="permission"/>
+        <result column="method" property="method"/>
+        <result column="sort" property="sort"/>
+        <result column="parent_id" property="parentId"/>
     </resultMap>
+
+    <select id="selectPermissionByRoleIds" resultType="com.example.security.entity.Permission">
+        SELECT
+        DISTINCT p.*
+        FROM sec_permission p
+        LEFT JOIN sec_role_permission rp ON p.id = rp.permission_id
+        WHERE rp.role_id IN (:roleIds)
+    </select>
 
 </mapper>

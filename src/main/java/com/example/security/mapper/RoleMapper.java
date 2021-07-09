@@ -2,6 +2,9 @@ package com.example.security.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.security.entity.Role;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.example.security.entity.Role;
  */
 public interface RoleMapper extends BaseMapper<Role> {
 
+    List<Role> selectRoleListByUserId(@Param("userId") Long userId);
 }

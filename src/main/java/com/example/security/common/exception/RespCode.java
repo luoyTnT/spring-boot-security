@@ -7,7 +7,7 @@ public interface RespCode {
     /**
      * 返回code
      */
-    int getCode();
+    Integer getCode();
 
     /**
      * 返回的message

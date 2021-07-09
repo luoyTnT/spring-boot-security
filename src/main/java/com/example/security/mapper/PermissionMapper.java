@@ -2,6 +2,9 @@ package com.example.security.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.security.entity.Permission;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.example.security.entity.Permission;
  */
 public interface PermissionMapper extends BaseMapper<Permission> {
 
+    List<Permission> selectPermissionByRoleIds(@Param("roleIds") List<Long> roleIds);
 }

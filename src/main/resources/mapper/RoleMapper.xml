@@ -4,11 +4,21 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.example.security.entity.Role">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="description" property="description" />
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
     </resultMap>
+
+    <select id="selectRoleListByUserId" resultType="com.example.security.entity.Role">
+    SELECT
+    r.id,
+    r.`name`
+    FROM sec_role r
+    LEFT JOIN sec_user_role ur ON r.id = ur.role_id
+    LEFT JOIN sec_user u ON ur.user_id = u.id
+    WHERE u.id = ${userId}
+    </select>
 
 </mapper>
