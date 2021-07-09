@@ -57,6 +57,7 @@ custom:
         - "/auth/login"
         - "/auth/logout"
       get:
+        - "/auth/verifyCode"
       # 需要过滤的请求，不限方法
       pattern:
         - "/test"

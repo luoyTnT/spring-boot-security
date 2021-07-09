@@ -14,6 +14,11 @@ public enum SystemRespCode implements RespCode {
     SUCCESS(200, "操作成功！"),
 
     /**
+     * 失败
+     */
+    FAILED(-1, "失败！"),
+
+    /**
      * 操作异常！
      */
     ERROR(500, "操作异常！"),
@@ -98,16 +103,6 @@ public enum SystemRespCode implements RespCode {
     SystemRespCode(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
-    }
-
-    public static SystemRespCode fromCode(Integer code) {
-        SystemRespCode[] statuses = SystemRespCode.values();
-        for (SystemRespCode status : statuses) {
-            if (status.getCode().equals(code)) {
-                return status;
-            }
-        }
-        return SUCCESS;
     }
 
     @Override
