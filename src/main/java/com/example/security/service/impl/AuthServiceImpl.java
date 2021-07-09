@@ -2,6 +2,7 @@ package com.example.security.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.example.security.common.exception.BaseException;
+import com.example.security.common.exception.SecurityException;
 import com.example.security.common.exception.SystemRespCode;
 import com.example.security.entity.User;
 import com.example.security.query.LoginQuery;
@@ -16,6 +17,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 @RequiredArgsConstructor
@@ -43,6 +46,16 @@ public class AuthServiceImpl implements AuthService {
                 .token(jwt)
                 .userInfo(principal)
                 .build();
+    }
+
+    @Override
+    public void logout(HttpServletRequest request) {
+        try {
+            // 设置JWT过期
+            jwtUtil.invalidateJWT(request);
+        } catch (SecurityException e) {
+            throw new SecurityException(SystemRespCode.UNAUTHORIZED);
+        }
     }
 
     private void userCheck(LoginQuery loginQuery) {

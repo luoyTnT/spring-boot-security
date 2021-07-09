@@ -95,7 +95,7 @@ public enum SystemRespCode implements RespCode {
      */
     private final String msg;
 
-    SystemRespCode(int code, String msg) {
+    SystemRespCode(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }

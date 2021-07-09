@@ -1,5 +1,6 @@
 package com.example.security.controller;
 
+import com.example.security.common.exception.SystemRespCode;
 import com.example.security.common.utils.ApiResponse;
 import com.example.security.query.LoginQuery;
 import com.example.security.service.AuthService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -26,10 +28,18 @@ public class AuthController {
      * 登录
      *
      * @param loginQuery 登录信息
-     * @return UserLoginSuccessVo
      */
     @PostMapping("/login")
     public ApiResponse<UserLoginSuccessVo> login(@RequestBody @Valid LoginQuery loginQuery) {
         return ApiResponse.success(this.service.login(loginQuery));
+    }
+
+    /**
+     * 退出
+     */
+    @PostMapping("/logout")
+    public ApiResponse<SystemRespCode> logout(HttpServletRequest request) {
+        this.service.logout(request);
+        return ApiResponse.success(SystemRespCode.LOGOUT);
     }
 }
